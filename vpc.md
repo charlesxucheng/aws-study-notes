@@ -37,3 +37,16 @@ A gateway route table associated with an internet gateway supports routes with t
 
 
 The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
+
+# DNS Related
+Each VPC has a default DHCP options set that contains the following network configurations:
+* DNS server: The DNS name servers that your network interfaces will use for domain name resolution.
+* Domain name: The domain name that EC2 instances in the VPC will use in their private hostnames.
+
+AmazonProvidedDNS is an Amazon Route 53 Resolver server.
+
+When you launch an instance, it always receives a private IPv4 address and a private DNS hostname that corresponds to its private IPv4 address.
+* Private IP DNS name (IPv4 only): The IPBN-based (legacy scheme) IPv4 DNS hostname that includes the private IPv4 address. You can use the Private IP DNS name (IPv4 only) hostname for communication between instances in the same network, but we can't resolve the DNS hostname outside the network that the instance is in. Example: ip-10-24-34-0.ec2.internal, ip-10-24-34-0.us-west-2.compute.internal
+* Private resource DNS name: The RBN-based DNS name that includes the EC2 instance id. When used as the Private DNS hostname, it can return both the Private IPv4 address (A record) and/or the IPv6 Global Unicast Address (AAAA record). Example: i-0123456789abcdef.ec2.internal
+
+To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
