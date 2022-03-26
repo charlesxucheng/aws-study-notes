@@ -35,8 +35,24 @@ A gateway route table associated with an internet gateway supports routes with t
 
 **The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
 
-
 The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
+
+**VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
+
+VPC resources locations:
+* **Availability Zones** are multiple, isolated locations within each Region.
+* **Local Zones** allow you to place resources, such as compute and storage, in multiple locations closer to your end users. When you create a subnet in a Local Zone, you extend the VPC to that Local Zone.
+  * A **network border group** is a unique set of Availability Zones or Local Zones from which AWS advertises public IP addresses. IP addresses cannot move between network border groups.
+  * Local Zones can have IGW. 
+  * Local zones can use a virtual private gateway to connect to a Direct Connect gateway and reach on-prem network.
+  * You can't create a transit gateway attachment for a subnet in a Local Zone. It has to go through other subnets in the parent AZ.
+* **AWS Outposts** brings native AWS services, infrastructure, and operating models to virtually any data center, co-location space, or on-premises facility.
+  * The subnets in AWS Outpost must reside in one Outpost location.
+  * A **Local Gateway** handles the network connectivity between your VPC and on-premises networks. 
+* **Wavelength Zones** allow developers to build applications that deliver ultra-low latencies to 5G devices and end users. Wavelength deploys standard AWS compute and storage services to the edge of telecommunication carriers' 5G networks. When you create a subnet in a Wavelength Zone, you extend the VPC to that Wavelength Zone.
+  * You can create EC2 instances, EBS volumes, and carrier gateways in Wavelength Zones. You can also use services that orchestrate or work with EC2, EBS, and VPC such as EC2 Auto Scaling, EKS, ECS, EC2 Systems Manager, CloudWatch, CloudTrail, and CloudFormation.
+  * You can't create a transit gateway attachment for a subnet in a Wavelength Zone. It has to go through other subnets in the parent AZ.
+  * EC2 instances in different Wavelength Zones in the same VPC are not allowed to communicate with each other. If you need Wavelength Zone to Wavelength Zone communication, AWS recommends that you use multiple VPCs, one for each Wavelength Zone. You can use a transit gateway to connect the VPCs. 
 
 # DNS Related
 Each VPC has a default DHCP options set that contains the following network configurations:
@@ -50,3 +66,4 @@ When you launch an instance, it always receives a private IPv4 address and a pri
 * Private resource DNS name: The RBN-based DNS name that includes the EC2 instance id. When used as the Private DNS hostname, it can return both the Private IPv4 address (A record) and/or the IPv6 Global Unicast Address (AAAA record). Example: i-0123456789abcdef.ec2.internal
 
 To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
+
