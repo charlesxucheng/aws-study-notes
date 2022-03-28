@@ -39,6 +39,12 @@ The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP address
 
 **VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
 
+For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
+
+Security groups control inbound and outbound traffic for your instances, and network ACLs control inbound and outbound traffic for your subnets. Each subnet must be associated with a network ACL.
+
+With AWS Resource Access Manager, the owner of a prefix list can share a prefix list.
+
 VPC resources locations:
 * **Availability Zones** are multiple, isolated locations within each Region.
 * **Local Zones** allow you to place resources, such as compute and storage, in multiple locations closer to your end users. When you create a subnet in a Local Zone, you extend the VPC to that Local Zone.
