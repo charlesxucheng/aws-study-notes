@@ -4,7 +4,7 @@ Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.ht
 
 * **An internet gateway** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. An internet gateway enables resources (like EC2 instances) in your public subnets to connect to the internet if the resource has a public IPv4 address or an IPv6 address. An internet gateway serves two purposes: (1) as a target in VPC route tables, (2) perform network address translation (NAT). 
 
-An Elastic IP address is a static, public IPv4 address。Elastic IP addresses are regional.
+An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region. You can use AWS provided Elastic IP or bring your own IP.
 
 **Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for use with IPv6 traffic only. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
 [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
