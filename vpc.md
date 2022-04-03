@@ -2,6 +2,10 @@ VPC = Virtual Private Cloud
 
 Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
 
+* **An internet gateway** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. An internet gateway enables resources (like EC2 instances) in your public subnets to connect to the internet if the resource has a public IPv4 address or an IPv6 address. An internet gateway serves two purposes: (1) as a target in VPC route tables, (2) perform network address translation (NAT). 
+
+An Elastic IP address is a static, public IPv4 address。Elastic IP addresses are regional.
+
 **Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for use with IPv6 traffic only. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
 [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
 
@@ -33,6 +37,11 @@ A gateway route table associated with an internet gateway supports routes with t
 
 **A gateway load balancer endpoint** is a VPC endpoint in the service consumer VPC of a gateway load balancer located in the service provider VPC. Gateway Load Balancers enable you to deploy, scale, and manage virtual appliances, such as firewalls, intrusion detection and prevention systems, and deep packet inspection systems. (Choke point)
 
+Middlebox routing scenarios:
+* Inspect all Internet traffic destined for or originated from a subnet (Subnet B) using a firewall appliance installed on an EC2 instance in another subnet (Subnet C).
+* Inspect all Internet traffic destined for or origniated from a subnet (Subnet 1) using a fleet of security appliances configured behind a Gateway Load Balancer in the security VPC by going through a Gateway Load Balancer endpoint in another subnet (Subnet 2).
+* Inspect the traffic between subnets A and B of a VPC by a firewall appliance installed in an EC2 instance in subnet C.
+
 **The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
 
 The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
@@ -41,7 +50,11 @@ The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP address
 
 For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
 
-Security groups control inbound and outbound traffic for your instances, and network ACLs control inbound and outbound traffic for your subnets. Each subnet must be associated with a network ACL.
+Security groups vs Network ACLs:
+* Security groups control inbound and outbound traffic for your instances, and network ACLs control inbound and outbound traffic for your subnets. 
+* Security groups are stateful and network ACLs are stateless. 
+* The most specific (smallest target CIDR range) security group will be used. The matching network ACL with the lowest number will be used.
+* Each subnet must be associated with a network ACL. 
 
 With AWS Resource Access Manager, the owner of a prefix list can share a prefix list.
 
