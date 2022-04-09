@@ -9,7 +9,11 @@ An Elastic IP address is a static, public IPv4 address associated to a network i
 **Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for use with IPv6 traffic only. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
 [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
 
-**Difference between a NAT gateway and a NAT instance:** A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to the internet, other VPCs, or on-premises networks. A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks.
+**Difference between a NAT gateway and a NAT instance:** A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to **the internet, other VPCs, or on-premises networks**. A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks. 
+
+You can use a private NAT gateway (and a transit gateway) to enable communication between networks even if they have overlapping CIDR ranges.
+
+A NAT gateway supports network address translation from IPv6 to IPv4, popularly known as NAT64. NAT64 helps your IPv6 AWS resources communicate with IPv4 resources in the same VPC or a different VPC, in your on-premises network or over the internet. You can use NAT64 with DNS64 on Amazon Route 53 Resolver or use your own DNS64 server.
 
 **Carrier gateways:** For subnets in **Wavelength Zones**, this type of gateway allows inbound traffic from a telecommunication carrier network in a specific location and outbound traffic to a telecommunication carrier network and the internet.
 
