@@ -90,3 +90,11 @@ When you launch an instance, it always receives a private IPv4 address and a pri
 
 To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
 
+# VPC Monitoring
+* **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs. Flow log data can be published to Amazon CloudWatch Logs or Amazon S3. 
+* Amazon VPC IP Address Manager (IPAM): plan, track, and monitor IP addresses
+* Traffic Mirroring
+* VPC Reachability Analyzer
+* Network Access Analyzer
+* CloudTrail logs
+
