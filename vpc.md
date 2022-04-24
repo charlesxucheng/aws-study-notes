@@ -91,10 +91,22 @@ When you launch an instance, it always receives a private IPv4 address and a pri
 To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
 
 # VPC Monitoring
-* **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs. Flow log data can be published to Amazon CloudWatch Logs or Amazon S3. 
+* **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs.  
 * Amazon VPC IP Address Manager (IPAM): plan, track, and monitor IP addresses
 * Traffic Mirroring
 * VPC Reachability Analyzer
 * Network Access Analyzer
 * CloudTrail logs
 
+## VPC Flow Logs
+Flow logs do not affect network throughput or latency.
+You can create a flow log for a VPC, a subnet, or a network interface. If you create a flow log for a subnet or VPC, each network interface in that subnet or VPC is monitored.
+
+To create a flow log, you specify:
+* The resource for which to create the flow log
+* The type of traffic to capture (accepted traffic, rejected traffic, or all traffic)
+* The destinations to which you want to publish the flow log data (S3 or Cloudwatch)
+
+You can create flow logs for network interfaces that are created by other AWS services.
+
+You can use Athena with VPC Flow Logs in S3 to quickly get actionable insights about the traffic flowing through your VPC.
