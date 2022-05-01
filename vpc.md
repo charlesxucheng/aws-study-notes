@@ -96,6 +96,18 @@ When you launch an instance, it always receives a private IPv4 address and a pri
 
 To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
 
+## VPC Peering
+You can create a VPC peering connection:
+* between your own VPCs, or with a VPC in another AWS account. 
+* for VPCs in different regions.
+
+You cannot create VPC peering connection:
+* If the two VPCs have overlapping IPv4 or IPv6 CIDR range
+
+VPC peering connection is not transitive. Route tables at both VPCs need to be manually updated. Security groups may need to be manually updated.
+DNS resolution support can be enabled for a VPC peering connection.
+
+
 ## VPC Monitoring
 * **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs.  
 * Amazon VPC IP Address Manager (IPAM): plan, track, and monitor IP addresses
