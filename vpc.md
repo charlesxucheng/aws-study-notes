@@ -29,7 +29,21 @@ If your route table has multiple routes, we use the most specific route that mat
 
 **Propagation:** allows a virtual private gateway to automatically propagate routes to the route tables without the need to manually enter VPN routes.
 
-**Gateway route table:** associated with an internet gateway or virtual private gateway.
+**The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
+
+The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
+
+**VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
+
+For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
+
+**AWS Firewall Manager** simplifies your VPC security groups administration and maintenance tasks across multiple accounts and resources. 
+
+**AWS Network Firewall** is a stateful, managed, network firewall and intrusion detection and prevention service.
+
+**DNS Firewall** allows you to define domain name filtering rules in rule groups that you associate with your VPCs. 
+
+**AWS PrivateLink** establishes private connectivity between virtual private clouds (VPC) and supported AWS services, services hosted by other AWS accounts, and supported AWS Marketplace services. To use AWS PrivateLink, create a VPC endpoint in your VPC, specifying the name of the service and a subnet. This creates an elastic network interface in the subnet that serves as an entry point for traffic destined to the service.
 
 ## Gateway Route Table
 A route table can be associated with internet gateways or virtual private gateways. 
@@ -41,20 +55,12 @@ A gateway route table associated with an internet gateway supports routes with t
 
 **A gateway load balancer endpoint** is a VPC endpoint in the service consumer VPC of a gateway load balancer located in the service provider VPC. Gateway Load Balancers enable you to deploy, scale, and manage virtual appliances, such as firewalls, intrusion detection and prevention systems, and deep packet inspection systems. (Choke point)
 
-Middlebox routing scenarios:
+**Middlebox routing scenarios:**
 * Inspect all Internet traffic destined for or originated from a subnet (Subnet B) using a firewall appliance installed on an EC2 instance in another subnet (Subnet C).
 * Inspect all Internet traffic destined for or origniated from a subnet (Subnet 1) using a fleet of security appliances configured behind a Gateway Load Balancer in the security VPC by going through a Gateway Load Balancer endpoint in another subnet (Subnet 2).
 * Inspect the traffic between subnets A and B of a VPC by a firewall appliance installed in an EC2 instance in subnet C.
 
-**The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
-
-The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
-
-**VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
-
-For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
-
-Security groups vs Network ACLs:
+## Security groups vs Network ACLs
 * Security groups control inbound and outbound traffic for your instances, and network ACLs control inbound and outbound traffic for your subnets. 
 * Security groups are stateful and network ACLs are stateless. 
 * The most specific (smallest target CIDR range) security group will be used. The matching network ACL with the lowest number will be used.
@@ -62,7 +68,7 @@ Security groups vs Network ACLs:
 
 With AWS Resource Access Manager, the owner of a prefix list can share a prefix list.
 
-VPC resources locations:
+## VPC resources locations
 * **Availability Zones** are multiple, isolated locations within each Region.
 * **Local Zones** allow you to place resources, such as compute and storage, in multiple locations closer to your end users. When you create a subnet in a Local Zone, you extend the VPC to that Local Zone.
   * A **network border group** is a unique set of Availability Zones or Local Zones from which AWS advertises public IP addresses. IP addresses cannot move between network border groups.
@@ -77,7 +83,7 @@ VPC resources locations:
   * You can't create a transit gateway attachment for a subnet in a Wavelength Zone. It has to go through other subnets in the parent AZ.
   * EC2 instances in different Wavelength Zones in the same VPC are not allowed to communicate with each other. If you need Wavelength Zone to Wavelength Zone communication, AWS recommends that you use multiple VPCs, one for each Wavelength Zone. You can use a transit gateway to connect the VPCs. 
 
-# DNS Related
+## DNS Related
 Each VPC has a default DHCP options set that contains the following network configurations:
 * DNS server: The DNS name servers that your network interfaces will use for domain name resolution.
 * Domain name: The domain name that EC2 instances in the VPC will use in their private hostnames.
@@ -90,7 +96,7 @@ When you launch an instance, it always receives a private IPv4 address and a pri
 
 To access the resources in your VPC using custom DNS domain names, such as example.com, instead of using private IPv4 addresses or AWS-provided private DNS hostnames, you can create a **private hosted zone in Route 53**. A private hosted zone is a container that holds information about how you want to route traffic for a domain and its subdomains within one or more VPCs without exposing your resources to the internet. 
 
-# VPC Monitoring
+## VPC Monitoring
 * **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs.  
 * Amazon VPC IP Address Manager (IPAM): plan, track, and monitor IP addresses
 * Traffic Mirroring
@@ -110,3 +116,12 @@ To create a flow log, you specify:
 You can create flow logs for network interfaces that are created by other AWS services.
 
 You can use Athena with VPC Flow Logs in S3 to quickly get actionable insights about the traffic flowing through your VPC.
+
+## VPC Best Practices
+The following are general best practices:
+
+* Use multiple Availability Zone deployments so you have high availability.
+* Use security groups and network ACLs. 
+* Use IAM policies to control access.
+* Use Amazon CloudWatch to monitor your VPC components and VPN connections.
+* Use flow logs to capture information about IP traffic going to and from network interfaces in your VPC. 
