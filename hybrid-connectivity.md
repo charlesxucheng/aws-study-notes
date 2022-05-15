@@ -11,7 +11,9 @@ Client VPN supports two types of **client authorization**: security groups and n
 
 **Connection Authorization:** You can configure a client connect handler for your Client VPN endpoint. The handler enables you to run a lambda function that authorizes a new connection, based on device, user, and connection attributes.
 
-**Split-tunnel** ensures that only traffic with a destination to the network matching a route from the Client VPN endpoint route table is routed over the Client VPN tunnel.
+**Split-tunnel** ensures that only traffic with a destination to the network matching a route from the Client VPN endpoint route table is routed over the Client VPN tunnel. Split tunnel can optimize routing and reduce data egress cost by routing traffic to AWS network only when required.
+
+You can associate multiple subnets in different AZs with a Client VPN endpoint for high availability.
 
 # Site-to-site VPN
 A Site-to-Site VPN connection offers two VPN tunnels between a **virtual private gateway** or a **transit gateway** on the AWS side, and a customer gateway (which represents a VPN device) on the remote (on-premises) side. Both vgw and tg can have multiple Site-to-Site VPN connections to multiple on-premises locations. vpg can connect to on-premise network via **Direct Connect**. See [Architecture Diagrams](https://docs.aws.amazon.com/vpn/latest/s2svpn/Examples.html).
