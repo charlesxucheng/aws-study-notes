@@ -41,3 +41,22 @@ VPN CloudHub enables your remote sites to communicate with each other, and not j
 
 * If propagated routes from a Site-to-Site VPN connection or AWS Direct Connect connection have the **same destination CIDR block** as other existing static routes (longest prefix match cannot be applied), we prioritize the static routes whose targets are an internet gateway, a virtual private gateway, a network interface, an instance ID, a VPC peering connection, a NAT gateway, a transit gateway, or a gateway VPC endpoint.
 
+# Direct Connect
+
+* A private VIF can be used to connect to a single VPC in the same AWS region using a private IP *through a VGW.
+* A public VIF can be used to connect to AWS public services in any region using a public IP.
+* A transit VIF can be used to access one or more Amazon VPC Transit Gateways associated with Direct Connect gateways.
+
+You can use a single connection in a public Region to access public AWS services in all other public Regions to build multi-Region services. 
+
+Types of connections:
+* Dedicated connections. Connection speed: 1 Gbps, 10 Gbps, and 100 Gbps.
+* Hosted connection. Connection speed: From 50 Mbps to 10 Gbps
+
+DX connections are not encrypted. IPSec Site-to-Site VPN or MACSec can be used over DX connections.
+
+Use Direct Connect Gateway to connect to multiple VPCs. A Direct Connect Gateway can connect to a transit gateway or a VGW. A Direct Connect gateway is a globally available resource. You can create the Direct Connect gateway in any Region and access it from all other Regions. 
+
+Direct Connect Gateway can be associated to multiple accounts.
+
+Hosted VIF shares bandwidth with other customers. It allows sharing of VIF to other accounts.
