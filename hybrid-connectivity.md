@@ -43,7 +43,7 @@ VPN CloudHub enables your remote sites to communicate with each other, and not j
 
 # Direct Connect
 
-* A private VIF can be used to connect to a single VPC in the same AWS region using a private IP *through a VGW.
+* A private VIF can be used to connect to a single VPC in the same AWS region using a private IP through a VGW.
 * A public VIF can be used to connect to AWS public services in any region using a public IP.
 * A transit VIF can be used to access one or more Amazon VPC Transit Gateways associated with Direct Connect gateways.
 
@@ -55,8 +55,20 @@ Types of connections:
 
 DX connections are not encrypted. IPSec Site-to-Site VPN or MACSec can be used over DX connections.
 
-Use Direct Connect Gateway to connect to multiple VPCs. A Direct Connect Gateway can connect to a transit gateway or a VGW. A Direct Connect gateway is a globally available resource. You can create the Direct Connect gateway in any Region and access it from all other Regions. 
-
-Direct Connect Gateway can be associated to multiple accounts.
-
 Hosted VIF shares bandwidth with other customers. It allows sharing of VIF to other accounts.
+
+Need to understand better: https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html
+
+## Direct Connect Gateway
+Use Direct Connect Gateway to connect to multiple VPCs. A Direct Connect Gateway can connect to transit gateways or VGWs. A Direct Connect gateway is a globally available resource. You can create the Direct Connect gateway in any Region and access it from all other Regions. Direct Connect Gateway can be associated to multiple accounts. 
+
+You can attach multiple private virtual interfaces to your Direct Connect gateway. You cannot create a public virtual interface to a Direct Connect gateway. The VPCs to which you connect through a Direct Connect gateway cannot have overlapping CIDR blocks. 
+
+You cannot attach a Direct Connect gateway to a transit gateway when the Direct Connect gateway is already associated with a virtual private gateway or is attached to a private virtual interface. A transit gateway can only be used with a 1 Gbps or faster Direct Connect connection.
+
+## Link Aggregation Group
+A link aggregation group (LAG) is a logical interface that uses the Link Aggregation Control Protocol (LACP) to aggregate multiple connections at a single AWS Direct Connect endpoint, allowing you to treat them as a single, managed connection. 
+* All connections must be dedicated connections and have a port speed of 1 Gbps, 10 Gbps, or 100 Gbps.
+* All connections in the LAG must use the same bandwidth.
+* You can have a maximum of two 100G connections, or four connections with a port speed less than 100G in a LAG. 
+* All connections in the LAG must terminate at the same AWS Direct Connect endpoint.
