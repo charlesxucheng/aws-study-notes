@@ -20,3 +20,10 @@ A cache behavior lets you configure a variety of CloudFront functionality for a 
 When you create a new distribution, you specify settings for the default cache behavior, which automatically forwards all requests to the origin that you specify when you create the distribution. After you create a distribution, you can create additional cache behaviors that define how CloudFront responds when it receives a request for objects that match a path pattern. 
 
 When you create a cache behavior, you specify the one origin from which you want CloudFront to get objects. As a result, if you want CloudFront to distribute objects from all of your origins, you must have at least as many cache behaviors (including the default cache behavior) as you have origins.
+
+# CloudFront Distribution Configuration
+* Origin settings
+* Cache behavior settings - A cache behavior lets you configure a variety of CloudFront functionality for a given URL path pattern for files on your website.
+* Distribution settings - apply to the entire distribution.
+* Custom error pages and error caching
+* Restrictions - If you need to prevent users in selected countries from accessing your content (blacklist or whitelist)
