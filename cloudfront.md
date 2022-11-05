@@ -27,3 +27,8 @@ When you create a cache behavior, you specify the one origin from which you want
 * Distribution settings - apply to the entire distribution.
 * Custom error pages and error caching
 * Restrictions - If you need to prevent users in selected countries from accessing your content (blacklist or whitelist)
+
+# Customize CloudFront with Policies
+* With a CloudFront cache policy, you can specify the HTTP headers, cookies, and query strings that CloudFront includes in the cache key. You can also use the cache policy to specify time to live (TTL) and cache compressed settings.
+* With an origin request policy you can include additional values in origin requests without including them in the cache key, in addition to all of the values in the cache policy
+* With a CloudFront response headers policy, you can specify the HTTP headers that CloudFront adds to HTTP responses to viewers.
