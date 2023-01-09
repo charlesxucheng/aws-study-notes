@@ -39,3 +39,8 @@ When you create a cache behavior, you specify the one origin from which you want
 * Require users to access content using CloudFront signed URLs or signed cookies
 * Set up field-level encryption for specific content fields
 * Use AWS WAF to control access to your content
+
+# Using signed URLs and signed cookies
+When you create signed URLs or signed cookies, you use the private key from the signer’s key pair to sign a portion of the URL or the cookie. When someone requests a restricted file, CloudFront compares the signature in the URL or cookie with the unsigned URL or cookie, to verify that it hasn’t been tampered with. CloudFront also verifies that the URL or cookie is valid, meaning, for example, that the expiration date and time hasn’t passed.
+
+When you specify a signer, you also indirectly specify the files that require signed URLs or signed cookies by adding the signer to a cache behavior. A signer is either a trusted key group that you create in CloudFront (recommended because it does not require the use of root user), or an AWS account that contains a CloudFront key pair. 
