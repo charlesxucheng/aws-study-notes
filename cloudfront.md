@@ -32,3 +32,10 @@ When you create a cache behavior, you specify the one origin from which you want
 * With a CloudFront cache policy, you can specify the HTTP headers, cookies, and query strings that CloudFront includes in the cache key. You can also use the cache policy to specify time to live (TTL) and cache compressed settings.
 * With an origin request policy you can include additional values in origin requests without including them in the cache key, in addition to all of the values in the cache policy
 * With a CloudFront response headers policy, you can specify the HTTP headers that CloudFront adds to HTTP responses to viewers.
+
+# Configuring secure access and restricting access to content
+* Configure HTTPS connections
+* Prevent users in specific geographic locations from accessing content
+* Require users to access content using CloudFront signed URLs or signed cookies
+* Set up field-level encryption for specific content fields
+* Use AWS WAF to control access to your content
