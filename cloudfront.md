@@ -57,3 +57,17 @@ Ways to improve cache hit ratio:
 * Serving media content by using HTTP
 
 You can set up CloudFront with origin failover and origin groups for scenarios that require high availability. 
+
+# Edge Functions
+CloudFront Functions is ideal for lightweight, short-running functions for use cases like the following:
+* Cache key normalization – You can transform HTTP request attributes (headers, query strings, cookies, and even the URL path) to create an optimal cache key, which can improve your cache hit ratio.
+* Header manipulation – You can insert, modify, or delete HTTP headers in the request or response.
+* URL redirects or rewrites
+* Request authorization – You can validate hashed authorization tokens, such as JSON web tokens (JWT), by inspecting authorization headers or other request metadata.
+
+Lambda@Edge is a good fit for the following scenarios:
+* Functions that take several milliseconds or more to complete.
+* Functions that require adjustable CPU or memory.
+* Functions that depend on third-party libraries (including the AWS SDK, for integration with other AWS services).
+* Functions that require network access to use external services for processing.
+* Functions that require file system access or access to the body of HTTP requests.
