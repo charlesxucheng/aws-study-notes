@@ -71,3 +71,9 @@ Lambda@Edge is a good fit for the following scenarios:
 * Functions that depend on third-party libraries (including the AWS SDK, for integration with other AWS services).
 * Functions that require network access to use external services for processing.
 * Functions that require file system access or access to the body of HTTP requests.
+
+You can execute Lambda functions when the following CloudFront events occur:
+* When CloudFront receives a request from a viewer (viewer request)
+* Before CloudFront forwards a request to the origin (origin request)
+* When CloudFront receives a response from the origin (origin response)
+* Before CloudFront returns the response to the viewer (viewer response)
