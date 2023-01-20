@@ -77,3 +77,6 @@ You can execute Lambda functions when the following CloudFront events occur:
 * Before CloudFront forwards a request to the origin (origin request)
 * When CloudFront receives a response from the origin (origin response)
 * Before CloudFront returns the response to the viewer (viewer response)
+
+# Global Accelerator
+Global Accelerator is a global service that supports endpoints in multiple AWS Regions. Global Accelerator provides you with static IP addresses via Route 53 that are anycast from the AWS edge network. The IP addresses will lead users to the application in the region nearest to the user. From the edge location the traffic goes through AWS global network which provides consistent latency and good bandwidth.
