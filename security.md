@@ -17,3 +17,23 @@
 Customer managed root of trust
 * FIPS 140-2 Level 3
 * Broad 3rd party support
+
+# Macie
+Fully managed data security and data privacy service. Use ML and pattern matching to discover, monitor and protect sensitive data in S3.
+* Personal identification info
+* Protected Health Info
+* Regulatory docs
+* secrets
+* Identify changes to policy and ACLs
+* Monitor security posture of S3
+* Generic security findings. Integrates with Security Hub and EventBridge
+
+# AWS Config
+Evaluates the configuration against desired configurations of various services. Captures config changes and sends notifications with SNS and alerts via CW Events
+* S3 bucket has server side encryption enabled.
+* SSH restricted in security groups
+* RDS instance is publicly accessible
+
+# AWS Inspector
+* Checks security exposures and vulns in EC2s via agent. CIS benchmarks.
+* Checks Network configuration for ports reachable from outside of the VPC, processes reachable on port.
