@@ -37,3 +37,31 @@ Evaluates the configuration against desired configurations of various services. 
 # AWS Inspector
 * Checks security exposures and vulns in EC2s via agent. CIS benchmarks.
 * Checks Network configuration for ports reachable from outside of the VPC, processes reachable on port.
+
+# Shield
+* DDoS protection service integrated with CloudFront. Always-on detection and automatic inline mitigations. 
+* Minimize app downtime and latency
+* Standard - free, on by default. Advanced - $3K per month. 1 year commitment. More features.
+
+# GuardDuty
+* Threat detection - compromises of account, instances, S3 bucket. Malicious reconnaissance.
+* Monitoring of CloudTrail Management Events, CloudTrail S3 Data Events, VPC Flow Logs, DNS Logs
+
+# Network Firewall
+* Firewall endpoint in a Firewall Subnet different from protected subnets. Traffic goes through NFW via VPC route tables (both in and out).
+* VPC network protection
+  * Stateful and Stateless
+  * Intrusion Prevention System
+  * Web Filtering
+* Uses VPC endpoint and Gateway LB
+* Network Firewall Manager centrally applies policies across VPCs and accounts.
+
+# Route 53 Resolver DNS Firewall
+* Filter and regulate outbound DNS traffic for VPCs
+* Prevent DNS exfiltration of data (sending data to malicious sites)
+* Control the domains applications can query
+* Network Firewall Manager centrally configure and manage DNS Firewall.
+
+# Audit Manager
+* Continuously audit AWS usage to simplify risk assessment and compliance with regulations and industry standards
+* 
