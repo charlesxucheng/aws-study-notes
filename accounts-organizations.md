@@ -25,3 +25,10 @@
 * To allow a permission, SCPs with allow statements must be added to the account and every OU above it including root.
 * Every SCP in the hierarchy must explicitly allow the permissions required
 
+# Control Tower
+* A landing zone is a well-architected multi-account baseline
+* Control Tower creates a landing zone with pre-defined OUs (Security, Sandbox, Production, etc.). 
+* It uses guardrails for governance and compliance:
+  * Preventive guardrails using preconfigured SCPs and disallow API actions
+  * Detective guardrails using Config rules and Lambda functions and monitor and govern compliance
+* The root user in the management account are unrestricted
