@@ -13,5 +13,5 @@
     * JSON docs attached to a resource
     * Define principal for the action and resource
 * Role-based access control and attribute-based access control
-  * Attributes - tags (key and value)
+  * Attributes - tags (key and value) which can be associated to the principals or the resources
   
