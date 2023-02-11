@@ -14,4 +14,16 @@
     * Define principal for the action and resource
 * Role-based access control and attribute-based access control
   * Attributes - tags (key and value) which can be associated to the principals or the resources
-* Permission boundry - ensures users created has less permission than the creator, avoids situation where an IAM admin can create super user to do bad things.  
+* Permission boundry - attached to principals. Ensures users created has less permission than the creator, avoids situation where an IAM admin can create super user to do bad things.  
+
+# Evaluating Policies within an Account
+* Identity-based policy allows and Resource-based policy allows => Union
+* Identity-based policy allows and Permission-boundary allows => Intersection
+* Identity-based policy allows and Organizational SCP allows => Intersection
+
+# Determination Rules
+* By default everything is denied implicitly
+* Explicit allow in Identity-based or resource-based policy overrides the implicit deny
+* Explicit deny in Organizational SCP, Permission boundary or session policy overrides the explicit allow.
+* An explicit deny in any policy will always override any allows
+* Evaluation Order: Any explicit denies => Organization SCP => Resource-based policy (explicit allow ends flow) => Permission boundary => Session Policy => Identity-based policy (explicit allow ends flow)
