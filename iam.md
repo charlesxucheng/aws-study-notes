@@ -14,7 +14,10 @@
     * Define principal for the action and resource
 * Role-based access control and attribute-based access control
   * Attributes - tags (key and value) which can be associated to the principals or the resources
-* Permission boundry - attached to principals. Ensures users created has less permission than the creator, avoids situation where an IAM admin can create super user to do bad things.  
+* Permission boundry - attached to principals. 
+  * IAM principals can't alter the permission boundary to allow their own permissions to access restricted services. 
+  * IAM principals must attach the permission boundary to any IAM principals they create. 
+  * Ensures users created has less permission than the creator, avoids situation where an IAM admin can create super user to do bad things.  
 
 # Evaluating Policies within an Account
 * Identity-based policy allows and Resource-based policy allows => Union
