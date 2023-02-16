@@ -26,3 +26,14 @@ Scheduled RI
 * EC2 Fleet
 * Spot Block - uninterrupted for 1 - 6 hours
 * 2 minute warning
+
+# EC2 Placement Groups
+* Cluster - close together, low-latency, HPC workload
+* Partition - spread instances across logical partitions, large distributed workloads like Hadoop, Cassandra, Kafka
+* Spread - strictly places a small group of instances across distinct hardware
+
+# Network Interfaces
+* ENI - basic adapter, not for high performance requirements
+* ENA - Enhanced network performance, for supported instance types
+* EFA - For HPC and MPI ML use cases, for all instance types
+
