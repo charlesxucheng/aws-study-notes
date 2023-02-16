@@ -37,3 +37,8 @@ Scheduled RI
 * ENA - Enhanced network performance, for supported instance types
 * EFA - For HPC and MPI ML use cases, for all instance types
 
+* Public IP - lost when the instance is stopped. No charge. Cannot be moved between instances
+* Pricvate IP - Retained when the instance is stopped
+* Elastic IP - Static public IP address. Chargeable. Can move between instances and ENAs
+
+IGW performs NAT between private IP and public IP
