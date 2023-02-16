@@ -42,3 +42,24 @@ Scheduled RI
 * Elastic IP - Static public IP address. Chargeable. Can move between instances and ENAs
 
 IGW performs NAT between private IP and public IP
+
+# ELB
+* ALB
+  * Layer 7, request level
+  * path-, host-, query string param-, and source IP address-based routing
+  * instances, IP addresses, lambda functions and containers as targets
+  * Can do TLS termination and re-encryption, 2 connections
+* NLB
+  * Layer 4, connection level
+  * Ultra high performance, low latency and TLS offloading
+  * Can have a static IP or Elastic IP
+  * UDP and static IP addresses as targets. Targets can be outside a VPC.
+  * Single connection pass through or termination/re-encryption
+* Gateway LB
+  * Layer 3, Listens for all packets on all ports
+  * Used in front of virtual appliances such as firewalls, IPS/IDS, deep packet inspection systems. 
+  * Using GENEVE protocol
+
+Target groups are used to route requests to registered targets.
+
+  
