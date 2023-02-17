@@ -48,3 +48,5 @@
 * Remove unnecessary credentials
 * Use policy conditions for extra security
 * Monitor activity in AWS account
+
+SCPs do not affect any service-linked role. Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
