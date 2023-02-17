@@ -7,7 +7,7 @@ Components:
   * Using YAML to specify automation to perform
 * Run Command
 * Inventory
-* Patch Manager - scan managed instances for patch compliance and configuration inconsistencies
+* Patch Manager - apply patches and scan managed instances for patch compliance and configuration inconsistencies
 * Session Manager - secure remote management of instances at scale without logging into your servers. 
   * No bastion host, ssh, RDP, PowerShell
   * All actions recorded by CloudTrail
