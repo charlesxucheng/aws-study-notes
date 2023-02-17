@@ -64,4 +64,12 @@ Evaluates the configuration against desired configurations of various services. 
 
 # Audit Manager
 * Continuously audit AWS usage to simplify risk assessment and compliance with regulations and industry standards
-* 
+
+# WAF
+Can protect:
+* Amazon CloudFront distributions
+* Regional resources
+  * Amazon API Gateway REST API
+  * Application Load Balancer
+  * AWS AppSync GraphQL API
+  * Amazon Cognito user pool
