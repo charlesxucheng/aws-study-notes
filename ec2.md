@@ -51,7 +51,8 @@ IGW performs NAT between private IP and public IP
   * Can do TLS termination and re-encryption, 2 connections
 * NLB
   * Layer 4, connection level
-  * Ultra high performance, low latency and TLS offloading
+  * Ultra high performance, low latency and TLS offloading. 
+  * An NLB is a good choice if you expect millions of requests per second.
   * Can have a static IP or Elastic IP
   * UDP and static IP addresses as targets. Targets can be outside a VPC.
   * Single connection pass through or termination/re-encryption
