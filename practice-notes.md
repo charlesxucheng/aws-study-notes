@@ -18,6 +18,13 @@ NACL is useful for responding to DDoS attacks because it lets you create your ow
 
 Lex - Advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text. Chatbots.
 
+Route 53 attributes enableDnsHostnames and enableDnsSupport are set to “TRUE” by default and are needed for VPC resources to query Route 53 zone entries.
+
+For ELB, Cloudfront and S3, always use a Type A Record with an Alias and finally, for RDS, always use the CNAME Record with no Alias.
+
+To use a certificate with Elastic Load Balancing for the same site (the same fully qualified domain name, or FQDN, or set of FQDNs) in a different Region, you must request a new certificate for each Region in which you plan to use it. To use an ACM certificate with Amazon CloudFront, you must request the certificate in the US East (N. Virginia) region.
+
+
 AWS Elemental MediaConnect is a high-quality transport service for live video. 
 
 # Hybrid environment server management
@@ -29,3 +36,9 @@ AWS Elemental MediaConnect is a high-quality transport service for live video.
 * Deploy the application packages to the EC2 instances and on-premises servers using AWS CodeDeploy.
 
 Polly - Text to Speech; Textract - OCR
+
+Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
+
+Amazon Rekognition makes it easy to add image and video analysis to your applications. - Pattern recognition
+
+
