@@ -3,3 +3,8 @@ Identity Federation with SAML 2.0 enables federated single sign-on (SSO), so use
 AWS SSO supports single sign-on to business applications through web browsers only. AWS SSO supports only SAML 2.0–based applications.
 
 You can use trusted access to enable an AWS service that you specify, called the trusted service, to perform tasks in your organization and its accounts on your behalf. This involves granting permissions to the trusted service but does not otherwise affect the permissions for IAM users or roles. When you enable access, the trusted service can create an IAM role called a service-linked role in every account in your organization. That role has a permissions policy that allows the trusted service to do the tasks that are described in that service's documentation. This enables you to specify settings and configuration details that you would like the trusted service to maintain in your organization's accounts on your behalf. Only the linked AWS service can assume a service-linked role, which is why you cannot modify the trust policy of a service-linked role.
+
+AWS VM Import/Export does not support synching incremental changes from the on-premises environment to AWS. AWS SMS supports up to 16TB volumes. 
+
+
+
