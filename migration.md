@@ -20,6 +20,9 @@ Effort low to high:
 # Server Migration Service
 Migrates vSphere, Hyper-V, SCVMM, and Azure virtual machines to EC2. Performs automated, incremental and scheduled migrations to AMIs and then EC2s.
 
+# Daatabase Migration Service
+AWS Database Migration Service can migrate your data to and from most of the widely used commercial and open source databases. It supports homogeneous migrations such as Oracle to Oracle, as well as heterogeneous migrations between different database platforms, such as Oracle to Amazon Aurora. Migrations can be from on-premises databases to Amazon RDS or Amazon EC2, databases running on EC2 to RDS, or vice versa, as well as from one RDS database to another RDS database. It can also move data between SQL, NoSQL, and text-based targets.
+
 # DataSync
 Scheduled, automated data transfer from on-prem NFS or SMB servers to S3, FSx or EFS. Data in transit is TLS encrypted.
 
