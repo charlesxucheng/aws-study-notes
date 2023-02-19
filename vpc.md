@@ -11,6 +11,8 @@ An Elastic IP address is a static, public IPv4 address associated to a network i
 
 **Difference between a NAT gateway and a NAT instance:** A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to **the internet, other VPCs, or on-premises networks**. A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks. 
 
+The NAT gateway should be placed in a public subnet because it needs a Public IP address and a direct route to the Internet Gateway (IGW). 
+
 You can use a private NAT gateway (and a transit gateway) to enable communication between networks even if they have overlapping CIDR ranges.
 
 A NAT gateway supports network address translation from IPv6 to IPv4, popularly known as NAT64. NAT64 helps your IPv6 AWS resources communicate with IPv4 resources in the same VPC or a different VPC, in your on-premises network or over the internet. You can use NAT64 with DNS64 on Amazon Route 53 Resolver or use your own DNS64 server.
