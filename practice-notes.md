@@ -24,8 +24,13 @@ For EC2, use a Type A Record without an Alias. For ELB, Cloudfront and S3, alway
 
 To use a certificate with Elastic Load Balancing for the same site (the same fully qualified domain name, or FQDN, or set of FQDNs) in a different Region, you must request a new certificate for each Region in which you plan to use it. To use an ACM certificate with Amazon CloudFront, you must request the certificate in the US East (N. Virginia) region.
 
-
 AWS Elemental MediaConnect is a high-quality transport service for live video. 
+
+Polly - Text to Speech; Textract - OCR
+
+Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
+
+SSE-S3 provides strong multi-factor encryption in which each object is encrypted with a unique key. It also encrypts the key itself with a master key that it rotates regularly.
 
 # Hybrid environment server management
 * Use a Secure String data type in AWS Systems Manager Parameter Store for secrets. 
@@ -35,9 +40,7 @@ AWS Elemental MediaConnect is a high-quality transport service for live video.
   * For the on-premises servers, create an IAM Service Role and associate it with the servers. 
 * Deploy the application packages to the EC2 instances and on-premises servers using AWS CodeDeploy.
 
-Polly - Text to Speech; Textract - OCR
 
-Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 
 Amazon Rekognition makes it easy to add image and video analysis to your applications. - Pattern recognition
 
