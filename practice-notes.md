@@ -20,7 +20,7 @@ Lex - Advanced deep learning functionalities of automatic speech recognition (AS
 
 Route 53 attributes enableDnsHostnames and enableDnsSupport are set to “TRUE” by default and are needed for VPC resources to query Route 53 zone entries.
 
-For ELB, Cloudfront and S3, always use a Type A Record with an Alias and finally, for RDS, always use the CNAME Record with no Alias.
+For EC2, use a Type A Record without an Alias. For ELB, Cloudfront and S3, always use a Type A Record with an Alias. For RDS, always use the CNAME Record with no Alias.
 
 To use a certificate with Elastic Load Balancing for the same site (the same fully qualified domain name, or FQDN, or set of FQDNs) in a different Region, you must request a new certificate for each Region in which you plan to use it. To use an ACM certificate with Amazon CloudFront, you must request the certificate in the US East (N. Virginia) region.
 
