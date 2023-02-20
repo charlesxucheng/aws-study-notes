@@ -44,4 +44,8 @@ SSE-S3 provides strong multi-factor encryption in which each object is encrypted
 
 Amazon Rekognition makes it easy to add image and video analysis to your applications. - Pattern recognition
 
+# Route 53
+A Route 53 Resolver Endpoint is a customer-managed resolver consisting of one or more Elastic Network Interfaces (ENIs) deployed on your VPC. Resolver Endpoints are classified into two types:
 
+Inbound Endpoint – provides DNS resolution of AWS resources, such as EC2 instances, for your corporate network.
+Outbound Endpoint – provides resolution of specific DNS names that you configure using forwarding rules to your VPC.
