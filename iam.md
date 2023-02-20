@@ -50,3 +50,8 @@
 * Monitor activity in AWS account
 
 SCPs do not affect any service-linked role. Service-linked roles enable other AWS services to integrate with AWS Organizations and can't be restricted by SCPs.
+
+In IAM, you create one or more IAM roles for the federated users. In the role’s trust policy, you need to set the SAML provider as the principal, which establishes a trust relationship between your organization and AWS.
+
+Ensure that the ARN of the SAML provider, the ARN of the created IAM role, and SAMS assertion from the IdP are all included when the federated identity web portal calls the AWS STS AssumeRoleWithSAML API
+
