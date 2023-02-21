@@ -27,6 +27,8 @@ You can use pre-shared keys or certificates to authenticate your Site-to-Site VP
 
 You can create additional VPN connections from your on-premises location to other VPCs using the same customer gateway device or another device.
 
+There can only be one VGW attached to a VPC at a given time.
+
 VPN CloudHub enables your remote sites to communicate with each other, and not just with the VPC. The VPN CloudHub operates on a simple hub-and-spoke model that you can use with or without a VPC. The sites must not have overlapping IP ranges.
 
 ## Acceleration
@@ -42,9 +44,8 @@ VPN CloudHub enables your remote sites to communicate with each other, and not j
 * If propagated routes from a Site-to-Site VPN connection or AWS Direct Connect connection have the **same destination CIDR block** as other existing static routes (longest prefix match cannot be applied), we prioritize the static routes whose targets are an internet gateway, a virtual private gateway, a network interface, an instance ID, a VPC peering connection, a NAT gateway, a transit gateway, or a gateway VPC endpoint.
 
 # Direct Connect
-
 * A private VIF can be used to connect to a single VPC in the same AWS region using a private IP through a VGW.
-* A public VIF can be used to connect to AWS public services in any region using a public IP.
+* A public VIF can be used to connect to AWS public services **in any region** using a public IP.
 * A transit VIF can be used to access one or more Amazon VPC Transit Gateways associated with Direct Connect gateways.
 
 You can use a single connection in a public Region to access public AWS services in all other public Regions to build multi-Region services. 
