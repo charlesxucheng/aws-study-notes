@@ -16,19 +16,21 @@ Large batch processing workflow => AWS Simple Workflow Service, define workflows
 
 NACL is useful for responding to DDoS attacks because it lets you create your own rules to mitigate the attack when you know the source IPs or other signature.
 
-Lex - Advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text. Chatbots.
+Polly - Text to Speech. Lex - Advanced deep learning functionalities of automatic speech recognition (ASR) for converting speech to text, and natural language understanding (NLU) to recognize the intent of the text. Chatbots. Lex + Polly = Alexa software
+
+AWS Elemental MediaConnect is a high-quality transport service for live video. 
+
+Textract - OCR. 
+
+Amazon Rekognition makes it easy to add image and video analysis to your applications. - Pattern recognition
+
+Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 
 Route 53 attributes enableDnsHostnames and enableDnsSupport are set to “TRUE” by default and are needed for VPC resources to query Route 53 zone entries.
 
 For EC2, use a Type A Record without an Alias. For ELB, Cloudfront and S3, always use a Type A Record with an Alias. For RDS, always use the CNAME Record with no Alias.
 
 To use a certificate with Elastic Load Balancing for the same site (the same fully qualified domain name, or FQDN, or set of FQDNs) in a different Region, you must request a new certificate for each Region in which you plan to use it. To use an ACM certificate with Amazon CloudFront, you must request the certificate in the US East (N. Virginia) region.
-
-AWS Elemental MediaConnect is a high-quality transport service for live video. 
-
-Polly - Text to Speech; Textract - OCR
-
-Amazon CloudSearch is a managed service in the AWS Cloud that makes it simple and cost-effective to set up, manage, and scale a search solution for your website or application.
 
 SSE-S3 provides strong multi-factor encryption in which each object is encrypted with a unique key. It also encrypts the key itself with a master key that it rotates regularly.
 
@@ -41,8 +43,6 @@ SSE-S3 provides strong multi-factor encryption in which each object is encrypted
 * Deploy the application packages to the EC2 instances and on-premises servers using AWS CodeDeploy.
 
 
-
-Amazon Rekognition makes it easy to add image and video analysis to your applications. - Pattern recognition
 
 # Route 53
 A Route 53 Resolver Endpoint is a customer-managed resolver consisting of one or more Elastic Network Interfaces (ENIs) deployed on your VPC. Resolver Endpoints are classified into two types:
