@@ -2,16 +2,21 @@
 * User
 * Group
 * IAM Role - for delegation. Has
-  * trust policies - examples of resource based policy
-  * and permissions policies - example of identity based policy
+  * trust policies - defines who can assume the role
+    * examples of resource based policy
+  * permissions policies - defines what the role can do once it's assumed
+    * example of identity based policy
 * Principal - user or app that acn make a request for an action or operation on an AWS resource
-* Policy
+* Policy 
   * Identity-based
+    * Apply to users, groups and roles
     * Inline policy - 1-1 relationship with the user, group or role
     * Managed Policy - AWS or customer managed
   * Resource-based policy
+    * Apply to resources
     * JSON docs attached to a resource
     * Define principal for the action and resource
+
 * Role-based access control and attribute-based access control
   * Attributes - tags (key and value) which can be associated to the principals or the resources
 * Permission boundry - custom policy, attached to principals. 
