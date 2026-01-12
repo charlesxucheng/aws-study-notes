@@ -2,6 +2,7 @@
 * Management account - root of the Organization hierarchy
 * Group accounts into Organizational Units (OUs)
 * Create accounts programmatically using Organizations API
+* Invite existing accounts to join
 * Apply Service Control Policies (SCPs)
 * Enable CloudTrail in management account and apply to members
 * Consolidated billing
@@ -11,7 +12,8 @@
 * Controls the maximum available permissions (boundaries). Can't be applied in Management Account.
 * Still need IAM policy to perform actual actions
 * Tag policy enforces tag standardization
-* Explicit denies always override any kind of allows.
+* Permission set at a higher level does not fllow down to children!!!
+* Explicit denies always override any kind of allows. i.e. An explicit Deny cannot be overridden.
 * An explicit allow overrides an implicit deny (i.e. SCP not defined)
 
 ## Deny List Strategy
