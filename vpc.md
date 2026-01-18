@@ -2,6 +2,17 @@ VPC = Virtual Private Cloud
 
 Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html
 
+## CIDR Block Rules
+* The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). 
+* The CIDR block must not overlap with any existing CIDR block associated with the VPC.
+* You cannot increase or decrese the size of an existing CIDR block.
+* The first 4 and last IP address are not available for use.
+* AWS recommend you use CIDR blocks from the RFC 1918 ranges:
+  * 10.0.0.0 - 10.255.255.255 (10/8 prefix)
+  * 172.16.0.0 - 172.31.255.255 (172.16/12 prefix)
+  * 192.168.0.0 - 192.168.255.255 (192.168.16 prefix)
+* After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
+
 * **An internet gateway** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. An internet gateway enables resources (like EC2 instances) in your public subnets to connect to the internet if the resource has a public IPv4 address or an IPv6 address. An internet gateway serves two purposes: (1) as a target in VPC route tables, (2) perform network address translation (NAT). 
 
 An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region. You can use AWS provided Elastic IP or bring your own IP.
@@ -33,7 +44,7 @@ If your route table has multiple routes, we use the most specific route that mat
 
 **The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
 
-The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
+
 
 **VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
 
@@ -73,6 +84,8 @@ With AWS Resource Access Manager, the owner of a prefix list can share a prefix 
 ## VPC resources locations
 * **Availability Zones** are multiple, isolated locations within each Region.
 * **Local Zones** allow you to place resources, such as compute and storage, in multiple locations closer to your end users. When you create a subnet in a Local Zone, you extend the VPC to that Local Zone.
+  * Single-digit ms latency to users
+  * Live video, ML, AR/VR use cases
   * A **network border group** is a unique set of Availability Zones or Local Zones from which AWS advertises public IP addresses. IP addresses cannot move between network border groups.
   * Local Zones can have IGW. 
   * Local zones can use a virtual private gateway to connect to a Direct Connect gateway and reach on-prem network.
@@ -81,6 +94,8 @@ With AWS Resource Access Manager, the owner of a prefix list can share a prefix 
   * The subnets in AWS Outpost must reside in one Outpost location.
   * A **Local Gateway** handles the network connectivity between your VPC and on-premises networks. 
 * **Wavelength Zones** allow developers to build applications that deliver ultra-low latencies to 5G devices and end users. Wavelength deploys standard AWS compute and storage services to the edge of telecommunication carriers' 5G networks. When you create a subnet in a Wavelength Zone, you extend the VPC to that Wavelength Zone.
+  * Single-digit ms latency to users
+  * Live video, ML, AR/VR use cases
   * You can create EC2 instances, EBS volumes, and carrier gateways in Wavelength Zones. You can also use services that orchestrate or work with EC2, EBS, and VPC such as EC2 Auto Scaling, EKS, ECS, EC2 Systems Manager, CloudWatch, CloudTrail, and CloudFormation.
   * You can't create a transit gateway attachment for a subnet in a Wavelength Zone. It has to go through other subnets in the parent AZ.
   * EC2 instances in different Wavelength Zones in the same VPC are not allowed to communicate with each other. If you need Wavelength Zone to Wavelength Zone communication, AWS recommends that you use multiple VPCs, one for each Wavelength Zone. You can use a transit gateway to connect the VPCs. 
