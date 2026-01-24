@@ -40,6 +40,10 @@ The route table has:
 
 If your route table has multiple routes, we use the most specific route that matches the traffic (longest prefix match) to determine how to route the traffic.
 
+Each subnet can only be associated with one route table.
+
+Static routing rules are preferred over dynamically propogated rules (BGP), everything else being equal.
+
 **Propagation:** allows a virtual private gateway to automatically propagate routes to the route tables without the need to manually enter VPN routes.
 
 **The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
@@ -73,9 +77,11 @@ A gateway route table associated with an internet gateway supports routes with t
 * Inspect all Internet traffic destined for or origniated from a subnet (Subnet 1) using a fleet of security appliances configured behind a Gateway Load Balancer in the security VPC by going through a Gateway Load Balancer endpoint in another subnet (Subnet 2).
 * Inspect the traffic between subnets A and B of a VPC by a firewall appliance installed in an EC2 instance in subnet C.
 
-## Security groups vs Network ACLs
-* Security groups control inbound and outbound traffic for your instances, and network ACLs control inbound and outbound traffic for your subnets. 
-* Security groups are stateful and network ACLs are stateless. 
+## Security groups vs Network ACLs(NACLs)
+* Security groups control inbound and outbound traffic for your **instances**, and network ACLs control inbound and outbound traffic for your **subnets**. 
+* Security groups are stateful and network ACLs are stateless.
+* Security groups only have allow rules. NACLs have both allow and deny rules.
+* NACL rules are processed in order. Once a match is found the processing stops.
 * The most specific (smallest target CIDR range) security group will be used. The matching network ACL with the lowest number will be used.
 * Each subnet must be associated with a network ACL. 
 
