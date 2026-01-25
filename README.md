@@ -1,2 +1,1 @@
-# aws-study-notes
-AWS certifications study notes
+Study notes for the AWS Certified Solution Architect - Professional exam.
