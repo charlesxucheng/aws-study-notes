@@ -5,7 +5,7 @@ Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.ht
 ## CIDR Block Rules
 * The allowed CIDR block size of a VPC is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). 
 * The CIDR block must not overlap with any existing CIDR block associated with the VPC.
-* You cannot increase or decrese the size of an existing CIDR block.
+* You cannot increase or decrease the size of an existing CIDR block.
 * The first 4 and last IP address are not available for use.
 * AWS recommend you use CIDR blocks from the RFC 1918 ranges:
   * 10.0.0.0 - 10.255.255.255 (10/8 prefix)
@@ -13,19 +13,31 @@ Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.ht
   * 192.168.0.0 - 192.168.255.255 (192.168.16 prefix)
 * After you've created your VPC, you can associate secondary CIDR blocks with the VPC. 
 
-* **An internet gateway** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. An internet gateway enables resources (like EC2 instances) in your public subnets to connect to the internet if the resource has a public IPv4 address or an IPv6 address. An internet gateway serves two purposes: (1) as a target in VPC route tables, (2) perform network address translation (NAT). 
+## IPv4 & IPv6
 
-An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region. You can use AWS provided Elastic IP or bring your own IP.
+An IPv6 address is 128 bits long (8 x 16 bits). It uses hexadecimal values. Won't run out of addresses.
 
-**Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for outbound only IPv6 traffic. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
+When you enable IPv6 on an AWS VPC, the assigned CIDR block is always a /56 range. VPC subnets with IPv6 are always /64. This allows 256 subnets with IPv6 CIDR ranges.
 
-[(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
+All IPv6 addresses are publicly routable.
+
+For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
+
+## Elastic IP Address
+An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region (soft limit). You can use AWS provided Elastic IP or bring your own IP.
+
+## Internet Gateway
+* An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. 
+* An internet gateway enables resources (like EC2 instances) in your public subnets to connect to the internet if the resource has a public IPv4 address or an IPv6 address. 
+* An internet gateway serves two purposes: (1) as a target in VPC route tables, (2) perform network address translation (NAT). 
+
+## NAT Gateway vs NAT Instance
 
 **Difference between a NAT gateway and a NAT instance:** 
 * A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to **the internet, other VPCs, or on-premises networks**. 
 * A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks. 
-* A NAT gateway is managed by AWS. Elastic scalability up to 45Gbps. Automatic HA within AZ. Can be placed in multiple AZs. No security groups. Cannot access through SSH. No port forwarding.
-* A NAT instance need Security Groups to be assigend. Can be used as a bastion host. Can implement port forwarding through manual customization. Custom HA using multiple instances in multiple subnets.
+* A NAT gateway is managed by AWS. Elastic scalability up to 45 Gbps. Automatic HA within AZ. Can be placed in multiple AZs. No security groups. Cannot access through SSH. No port forwarding.
+* A NAT instance need Security Groups to be assigned. Can be used as a bastion host. Can implement port forwarding through manual customisation. Custom HA using multiple instances in multiple subnets.
 
 The NAT gateway should be placed in a public subnet because it needs a Public IP address (Elastic IP) and a direct route to the Internet Gateway (IGW). It also have a private IP address.
 Define a route in the private subnet's routing table with destination (e.g. 0.0.0.0) to be the NAT gateway ID.
@@ -34,7 +46,9 @@ You can use a private NAT gateway (and a transit gateway) to enable communicatio
 
 A NAT gateway supports network address translation from IPv6 to IPv4, popularly known as NAT64. NAT64 helps your IPv6 AWS resources communicate with IPv4 resources in the same VPC or a different VPC, in your on-premises network or over the internet. You can use NAT64 with DNS64 on Amazon Route 53 Resolver or use your own DNS64 server.
 
-**Carrier gateways:** For subnets in **Wavelength Zones**, this type of gateway allows inbound traffic from a telecommunication carrier network in a specific location and outbound traffic to a telecommunication carrier network and the internet.
+**Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for outbound only IPv6 traffic. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
+
+## Route Table
 
 **Prefix lists:** A collection of CIDR blocks that can be used to configure VPC security groups, VPC route tables, and AWS Transit Gateway route tables and can be shared with other AWS accounts using Resource Access Manager (RAM).
 
@@ -48,23 +62,11 @@ If your route table has multiple routes, we use the most specific route that mat
 
 Each subnet can only be associated with one route table.
 
-Static routing rules are preferred over dynamically propogated rules (BGP), everything else being equal.
+Static routing rules are preferred over dynamically propagated rules (BGP), everything else being equal.
 
 **Propagation:** allows a virtual private gateway to automatically propagate routes to the route tables without the need to manually enter VPN routes.
 
 **The transit gateway** acts as a **Regional** virtual router for traffic flowing between its attachments, which can include **VPCs, VPN connections, AWS Direct Connect gateways, and transit gateway peering connections**.
-
-
-
-**VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
-
-**AWS Firewall Manager** simplifies your VPC security groups administration and maintenance tasks across multiple accounts and resources. 
-
-**AWS Network Firewall** is a stateful, managed, network firewall and intrusion detection and prevention service.
-
-**DNS Firewall** allows you to define domain name filtering rules in rule groups that you associate with your VPCs. 
-
-**AWS PrivateLink** establishes private connectivity between virtual private clouds (VPC) and supported AWS services, services hosted by other AWS accounts, and supported AWS Marketplace services. To use AWS PrivateLink, create a VPC endpoint in your VPC, specifying the name of the service and a subnet. This creates an elastic network interface in the subnet that serves as an entry point for traffic destined to the service.
 
 ## Interface Endpoint vs Gateway Endpoint
 
@@ -81,8 +83,8 @@ Gateway Endpoint:
 - For S3, DynamoDB,etc
 - Can have VCP endpoint policies
 
-## Gateway Route Table
-A route table can be associated with internet gateways or virtual private gateways. 
+### Gateway Route Table
+A route table associated with internet gateways or virtual private gateways. 
 
 A gateway route table associated with an internet gateway supports routes with the following targets:
 * The default local route
@@ -93,7 +95,7 @@ A gateway route table associated with an internet gateway supports routes with t
 
 **Middlebox routing scenarios:**
 * Inspect all Internet traffic destined for or originated from a subnet (Subnet B) using a firewall appliance installed on an EC2 instance in another subnet (Subnet C).
-* Inspect all Internet traffic destined for or origniated from a subnet (Subnet 1) using a fleet of security appliances configured behind a Gateway Load Balancer in the security VPC by going through a Gateway Load Balancer endpoint in another subnet (Subnet 2).
+* Inspect all Internet traffic destined for or originated from a subnet (Subnet 1) using a fleet of security appliances configured behind a Gateway Load Balancer in the security VPC by going through a Gateway Load Balancer endpoint in another subnet (Subnet 2).
 * Inspect the traffic between subnets A and B of a VPC by a firewall appliance installed in an EC2 instance in subnet C.
 
 ## Security groups vs Network ACLs(NACLs)
@@ -104,9 +106,8 @@ A gateway route table associated with an internet gateway supports routes with t
 * The most specific (smallest target CIDR range) security group will be used. The matching network ACL with the lowest number will be used.
 * Each subnet must be associated with a network ACL. 
 
-With AWS Resource Access Manager, the owner of a prefix list can share a prefix list.
+## VPC Resources Locations
 
-## VPC resources locations
 * **Availability Zones** are multiple, isolated locations within each Region.
 * **Local Zones** allow you to place resources, such as compute and storage, in multiple locations closer to your end users. When you create a subnet in a Local Zone, you extend the VPC to that Local Zone.
   * Single-digit ms latency to users
@@ -149,7 +150,6 @@ You cannot create VPC peering connection:
 VPC peering connection is not transitive. Route tables at both VPCs need to be manually updated. Security groups may need to be manually updated.
 DNS resolution support can be enabled for a VPC peering connection.
 
-
 ## VPC Monitoring
 * **VPC Flow Logs:** capture detailed information about the traffic going to and from network interfaces in your VPCs.  
 * Amazon VPC IP Address Manager (IPAM): plan, track, and monitor IP addresses
@@ -180,14 +180,18 @@ The following are general best practices:
 * Use Amazon CloudWatch to monitor your VPC components and VPN connections.
 * Use flow logs to capture information about IP traffic going to and from network interfaces in your VPC. 
 
-## IPv4 & IPv6
+## Others
 
-An IPv6 address is 128 bits long (8x16 bits). It uses hexadecimal values. Won't run out of addresses.
+**Carrier gateways:** For subnets in **Wavelength Zones**, this type of gateway allows inbound traffic from a telecommunication carrier network in a specific location and outbound traffic to a telecommunication carrier network and the internet.
 
-When you enable IPv6 on an AWS VPC, the assigned CIDR block is always a /56 range. VPC subnets with IPv6 are always /64. This allows 256 subnets with IPv6 CIDR ranges.
+**VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
 
-All IPv6 addresses are publicly routable.
+With AWS Resource Access Manager, the owner of a prefix list can share a prefix list.
 
-For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
+**AWS Firewall Manager** simplifies your VPC security groups administration and maintenance tasks across multiple accounts and resources. 
 
+**AWS Network Firewall** is a stateful, managed, network firewall and intrusion detection and prevention service.
 
+**DNS Firewall** allows you to define domain name filtering rules in rule groups that you associate with your VPCs. 
+
+**AWS PrivateLink** establishes private connectivity between virtual private clouds (VPC) and supported AWS services, services hosted by other AWS accounts, and supported AWS Marketplace services. To use AWS PrivateLink, create a VPC endpoint in your VPC, specifying the name of the service and a subnet. This creates an elastic network interface in the subnet that serves as an entry point for traffic destined to the service.
