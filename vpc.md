@@ -17,12 +17,18 @@ Concepts: https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.ht
 
 An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region. You can use AWS provided Elastic IP or bring your own IP.
 
-**Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for use with IPv6 traffic only. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
+**Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for outbound only IPv6 traffic. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. 
+
 [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
 
-**Difference between a NAT gateway and a NAT instance:** A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to **the internet, other VPCs, or on-premises networks**. A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks. 
+**Difference between a NAT gateway and a NAT instance:** 
+* A NAT gateway is a managed AWS service that allows EC2 instances in private subnets to connect to **the internet, other VPCs, or on-premises networks**. 
+* A NAT instance is an EC2 instance in a public subnet that allows instances in private subnets to connect to the internet, other VPCs, or on-premises networks. 
+* A NAT gateway is managed by AWS. Elastic scalability up to 45Gbps. Automatic HA within AZ. Can be placed in multiple AZs. No security groups. Cannot access through SSH. No port forwarding.
+* A NAT instance need Security Groups to be assigend. Can be used as a bastion host. Can implement port forwarding through manual customization. Custom HA using multiple instances in multiple subnets.
 
-The NAT gateway should be placed in a public subnet because it needs a Public IP address and a direct route to the Internet Gateway (IGW). 
+The NAT gateway should be placed in a public subnet because it needs a Public IP address (Elastic IP) and a direct route to the Internet Gateway (IGW). It also have a private IP address.
+Define a route in the private subnet's routing table with destination (e.g. 0.0.0.0) to be the NAT gateway ID.
 
 You can use a private NAT gateway (and a transit gateway) to enable communication between networks even if they have overlapping CIDR ranges.
 
@@ -52,8 +58,6 @@ Static routing rules are preferred over dynamically propogated rules (BGP), ever
 
 **VPC sharing** allows multiple AWS accounts to create their application resources, such as EC2 instances and RDS databases into shared, centrally-managed virtual private clouds (VPCs).
 
-For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
-
 **AWS Firewall Manager** simplifies your VPC security groups administration and maintenance tasks across multiple accounts and resources. 
 
 **AWS Network Firewall** is a stateful, managed, network firewall and intrusion detection and prevention service.
@@ -61,6 +65,21 @@ For both IPv4 and IPv6, the first four IP addresses and the last IP address in e
 **DNS Firewall** allows you to define domain name filtering rules in rule groups that you associate with your VPCs. 
 
 **AWS PrivateLink** establishes private connectivity between virtual private clouds (VPC) and supported AWS services, services hosted by other AWS accounts, and supported AWS Marketplace services. To use AWS PrivateLink, create a VPC endpoint in your VPC, specifying the name of the service and a subnet. This creates an elastic network interface in the subnet that serves as an entry point for traffic destined to the service.
+
+## Interface Endpoint vs Gateway Endpoint
+
+Interface Endpoint:
+- ENI with a private IP
+- Use DNS entries to redirect traffic
+- For API Gateway, CFN, Cloudwatch, etc.
+- Can connect to PrivateLink powered services
+- Can have security groups
+
+Gateway Endpoint:
+- A gateway that is a target for a specific route
+- Use prefix lists in the route table to redirect traffic
+- For S3, DynamoDB,etc
+- Can have VCP endpoint policies
 
 ## Gateway Route Table
 A route table can be associated with internet gateways or virtual private gateways. 
@@ -160,3 +179,15 @@ The following are general best practices:
 * Use IAM policies to control access.
 * Use Amazon CloudWatch to monitor your VPC components and VPN connections.
 * Use flow logs to capture information about IP traffic going to and from network interfaces in your VPC. 
+
+## IPv4 & IPv6
+
+An IPv6 address is 128 bits long (8x16 bits). It uses hexadecimal values. Won't run out of addresses.
+
+When you enable IPv6 on an AWS VPC, the assigned CIDR block is always a /56 range. VPC subnets with IPv6 are always /64. This allows 256 subnets with IPv6 CIDR ranges.
+
+All IPv6 addresses are publicly routable.
+
+For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
+
+
