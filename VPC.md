@@ -42,8 +42,16 @@ An Elastic IP address is a static, public IPv4 address associated to a network i
 The NAT gateway should be placed in a public subnet because it needs a Public IP address (Elastic IP) and a direct route to the Internet Gateway (IGW). It also have a private IP address.
 Define a route in the private subnet's routing table with destination (e.g. 0.0.0.0) to be the NAT gateway ID.
 
-You can use a private NAT gateway (and a transit gateway) to enable communication between networks even if they have overlapping CIDR ranges.
+### Traffic Routing for Networks with Overlapping CIDR Ranges
+You can use a private NAT gateway (and a transit gateway) to enable communication between networks even if they have overlapping CIDR ranges. 
 
+For example, suppose that the instances in VPC A need to access the services provided by the instances in VPC B. A and B have overlapping CIDR ranges.
+
+Each VPC has its original IP address range, which is non-routable, plus the routable IP address range assigned to it by the IP management team. VPC A has a subnet from its routable range with a **private NAT gateway**. The private NAT gateway gets its IP address from its subnet. VPC B has a subnet from its routable range with an **Application Load Balancer**. The Application Load Balancer gets its IP addresses from its subnets.
+
+Traffic from an instance in the non-routable subnet of VPC A that is destined for the instances in the non-routable subnet of VPC B is sent through the private NAT gateway and then routed to the **transit gateway**. The transit gateway sends the traffic to the Application Load Balancer, which routes the traffic to one of the target instances in the non-routable subnet of VPC B. The traffic from the transit gateway to the Application Load Balancer has the source IP address of the private NAT gateway. Therefore, response traffic from the load balancer uses the address of the private NAT gateway as its destination. The response traffic is sent to the transit gateway and then routed to the private NAT gateway, which translates the destination to the instance in the non-routable subnet of VPC A. ([Source](https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-scenarios.html))
+
+### IPv6 to IPv4 NAT
 A NAT gateway supports network address translation from IPv6 to IPv4, popularly known as NAT64. NAT64 helps your IPv6 AWS resources communicate with IPv4 resources in the same VPC or a different VPC, in your on-premises network or over the internet. You can use NAT64 with DNS64 on Amazon Route 53 Resolver or use your own DNS64 server.
 
 **Difference between an egress-only internet gateway and an NAT gateway:** An egress-only internet gateway is for outbound only IPv6 traffic. To enable outbound-only internet communication over IPv4, use a NAT gateway instead. [(Source)](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.)
