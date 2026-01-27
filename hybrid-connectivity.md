@@ -1,4 +1,6 @@
 # Client VPN
+With Client VPN, VPN client connects to a VPN Endpoint in AWS. The VPN Endpoint is associated with client VPN network interfaces in each subnet, allowing access to the resources in the subnets. The VPN Endpoint performs NAT (SNAT).
+
 Client VPN offers the following types of **client authentication**:
 * Active Directory authentication (user-based)
   * Can use on-premises Active Directory with AD Connector
