@@ -23,8 +23,16 @@ All IPv6 addresses are publicly routable.
 
 For both IPv4 and IPv6, the first four IP addresses and the last IP address in each subnet CIDR block are not available for your use.
 
-## Elastic IP Address
+## Public, Private and Elastic IP Addresses
 An Elastic IP address is a static, public IPv4 address associated to a network interface. Elastic IP addresses are regional. Elastic IP addresses for IPv6 are not supported. All AWS accounts are limited to five Elastic IP addresses per Region (soft limit). You can use AWS provided Elastic IP or bring your own IP.
+
+EIPs are only required for NAT Gateways (1-3, 1 for each AZ for HA) and bastion hosts. Public facing applications usually handle Internet traffic via ALB/NLBs and do not need EIPs.
+
+EIPs can be moved across AZs. They incur cost even if not used.
+
+Private IPs are retained when EC2 is stopped.
+
+Public IPs are lost when EC2 is stopped. Used in Public Subnets. No cost. Cannot be moved across instances.
 
 ## Internet Gateway
 * An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. 
