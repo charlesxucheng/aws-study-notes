@@ -43,6 +43,10 @@ Scheduled RI
 
 IGW performs NAT between private IP and public IP
 
+# Autoscaling
+* Can be based on CPU util, network in, out, messages in SQS queue, ALB target request count, etc.
+* Simple scaling, Step scaling, scheduled scaling
+
 # ELB
 * ALB
   * Layer 7, request level
