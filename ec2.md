@@ -67,4 +67,6 @@ IGW performs NAT between private IP and public IP
 
 Target groups are used to route requests to registered targets.
 
+Target groups can enable sticky sessions which will generate a cookie in their response to clients. ALB/NLB will then route the subsequent requests to the same target using the cookie, bypassing the usual routing logic.
+
  
