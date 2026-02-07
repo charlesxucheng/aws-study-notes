@@ -10,7 +10,7 @@ Per-sec billing for Amazon Linux and Ubuntu, Windows. Per hour billing for comme
 
 ## RI
 * Standard RI - Change AZ, instance size, networking type
-* Convertibel RI - also family, OS, tenancy, payment option
+* Convertible RI - also family, OS, tenancy, payment option
   * All upfront, partial upfront, no upfront 
 
 When attributes of a used instance match those of an RI the discount is applied.
@@ -18,7 +18,7 @@ When attributes of a used instance match those of an RI the discount is applied.
 
 Scheduled RI
 * Minimum 1200 hours per year
-* Reseve by recurring schedule
+* Reserve by recurring schedule
 
 ## Spot
 * Spot instance
