@@ -70,6 +70,11 @@ Replication requires versioning enabled
 * Server-side encryption with KMS managed keys (SSE-KMS)
 * Server-side encryption with client provided keys (SSE-C)
 * Client-side encryption. Can use KMS CMK.
+* Now the default for new buckets and new objects is SSE-S3 encryption.
+* To encrypt existing unencrypted objects, use S3 Batch Operations or CopyObject API operation or copy-object CLI.
+* Enforce encryption with S3 Bucket Policy (deny on condition like no SSE-KMS)
+
+Server access logging - log access info to another bucket.
 
 ## Storage Gateway
 Types: File Gateway, Volume Gateway, Tape Gateway

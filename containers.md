@@ -6,10 +6,16 @@ An ECS Container Instance is an EC2 instance running the ECS agent (worker node)
 
 IAM role permissions of the Container Instance (EC2) are supplied to the tasks (instances). Fargate only has IAM Task Roles.
 
+## ECS Autoscaling
+* Service autoscaling: Supports Target Tracking, Step and Scheduled scaling policies
+* Cluster autoscaling: Uses a Capacity Provider ECS resource type associated with an EC2 ASG. Has container-aware EC2 instance termination.
+
 # EKS
 Supports AWS and on-prem deployments, hybrid deployments. Runs on EC2, Fargate and AWS Outposts. Across multiple AZs in the same region.
 
-AWS Load Balancer Controller manages AWS ELBs for a Kubernetes Cluster. It is installed using Helm v3 or K8S manifest. It supports NLB and ALB. K8S Ingress -> ALB. K8S LoadBalancer type Service -> NLB. With LB Controller 2.3 or later, you can create NLBs using either instance targets or IP targets.
+AWS Load Balancer Controller manages AWS ELBs for a Kubernetes Cluster. It is installed using Helm v3 or K8S manifest. 
+It supports NLB and ALB. K8S Ingress -> ALB. K8S LoadBalancer type Service -> NLB. 
+With LB Controller 2.3 or later, you can create NLBs using either instance targets or IP targets.
 
 EKS Distro - a distro of K8S with the same dependencies as Amazon EKS. Allows running of K8S anywhere.
 

@@ -54,9 +54,11 @@ Deployment Types:
 * Private endpoint
   * Securely expose REST APIs only to other services within your VPC or Direct Connect
 
+APIGW can have cache
+
 Throttling:
 * 10000  requests per second
 * 5000 requests across all APIs within an AWS account
 * 429 Too Many Requests error
 
-Different API keys can be used for different usage plans.
+Different API keys can be used for different usage plans (e.g. Premium/Basic).
