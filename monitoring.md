@@ -9,9 +9,11 @@
 * Alarms
   * metric alarm, composite alarm
 * Logs
-  *  Gather app logs and system logs. Send to S3, Kinesis Data Streams, Data Firehose, Lambda, 
-  *  Real-time log processing with subscription filters to Elasticsearch
-  *  Share logs across accounts and regions - only via Data Streams
+  * Install unified CloudWatch agent to collect logs to servers (EC2, On-prem) to collect app logs
+  * Gather app logs and system logs. Send to S3, Kinesis Data Streams, Data Firehose, Lambda
+  * E.g. Logs -> Kinesis Firehose -> Lambda -> S3 
+  * Real-time log processing with subscription filters to Elasticsearch or lambda
+  * Share logs across accounts and regions, e.g. to a centralized security account - only via Data Streams
 * Events (Event Bridge)
 
 # CloudTrail
@@ -19,6 +21,7 @@
 * 90 days => create a Trail to S3 for indefinite retention
 * CloudWatch events can be triggered based on API calls in CloudTrail
 * Events can be streamed to CloudWatch Logs
+* Trail can be created to S3 and enable log file integrity validation
 
 # X-Ray
 Visualize your components, APM tool like AppD
