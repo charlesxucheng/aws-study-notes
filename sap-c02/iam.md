@@ -11,11 +11,12 @@ Identity-based vs Resource-based: https://www.jbtechbytes.com/api/html-posts/aws
   * Attached to users, groups and roles
   * Inline policy - 1-1 relationship with the user, group or role
   * Managed Policy - AWS or customer managed
+
 * Resource-based policy
   * Attached to resources
   * JSON docs attached to a resource
   * Has a Principal field that defines WHO can access the resource
-  * Suitable for cross-account access and service-to-service permissions
+  * Suitable for **cross-account** access and **service-to-service** permissions
   * Still have the "Resource" field to apply further restrictions if required. Value should match the resource it is attached to.
 
 With regard to Policies attached to roles:
@@ -35,11 +36,19 @@ With regard to Policies attached to roles:
 * Role-based access control and attribute-based access control
   * Attributes - tags (key and value) which can be associated to the principals or the resources. Tags are matched in the policy conditions.
 
-# Permission boundries
+# Permission boundaries
   * Custom policy, attached to principals. Defines the max allowable access.
   * IAM principals can't alter the permission boundary to allow their own permissions to access restricted services. 
   * IAM principals must attach the permission boundary to any IAM principals they create. 
   * Ensures users created has less permission than the creator, avoids situation where an IAM admin can create another super user to do bad things.  
+
+# Resource Control Policy (New)
+* Caps what can be done to the resource in member accounts. Used to build a data perimeter.
+* Relate concept to SCP
+
+# Session Policy
+* Passed with AssumeRole or federation.
+* Narrows the session's permission further
 
 # Evaluating Policies within an Account
 * Identity-based policy allows and Resource-based policy allows => Union
@@ -53,7 +62,7 @@ With regard to Policies attached to roles:
 * An explicit deny in any type of policy will always  override any allows
 * Evaluation Order: Any explicit denies => Organization SCP => Resource-based policy (explicit allow ends flow) => Permission boundary => Session Policy => Identity-based policy (explicit allow ends flow)
 
-# IAM Best Pratices
+# IAM Best Practices
 * Lock away root user access keys
 * Create individual IAM users
 * Use groups to assign permission to IAM users
